@@ -12,7 +12,7 @@ import constants
 
 
 def splash_scene():
-    image_bank_1 = stage.Bank.from_bmp16("space_aliens.bmp")
+    image_bank_1 = stage.Bank.from_bmp16("IIB_sprites.bmp")
     background = stage.Grid(image_bank_1, 160, 120)
     game = stage.Stage(ugame.display, 60)
     game.layers = [background]
