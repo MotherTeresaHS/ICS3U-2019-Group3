@@ -12,7 +12,7 @@ import constants
 
 
 def splash_scene():
-    image_bank_1 = stage.Bank.from_bmp16("space_aliens.bmp")
+    image_bank_1 = stage.Bank.from_bmp16("IIB_sprites.bmp")
     background = stage.Grid(image_bank_1, 160, 120)
     game = stage.Stage(ugame.display, 60)
     game.layers = [background]
@@ -75,9 +75,55 @@ def menu_scene():
 
 
 def game_scene():
-    print("Hello!")
+    sprites = []
 
+    # buttons that keep state information
+    a_button = constants.button_state["button_up"]
+    b_button = constants.button_state["button_up"]
+    start_button = constants.button_state["button_up"]
+    select_button = constants.button_state["button_up"]
+
+    image_bank_1 = stage.Bank.from_bmp16("IIB_sprites.bmp")
+
+    vilheleme = stage.Sprite(image_bank_1, 2, int(constants.SCREEN_X / 2 -
+                        constants.SPRITE_SIZE / 2),
+                        int(constants.SCREEN_Y - constants.SPRITE_SIZE +
+                        constants.SPRITE_SIZE / 2))
+    sprites.append(vilheleme)  # insert at the top of sprite list
+
+    background = stage.Grid(image_bank_1, constants.SCREEN_X,
+                            constants.SCREEN_Y)
+
+    game = stage.Stage(ugame.display, constants.FPS)
+    # V add layers here V
+    game.layers = sprites + [background]
+    game.render_block()
+
+    while True:
+        # get user input
+        keys = ugame.buttons.get_pressed()
+        # (keys)
+        if keys & ugame.K_X:  # a button
+            pass
+        if keys & ugame.K_O:  # b
+            pass
+        if keys & ugame.K_START:  # start
+            pass
+        if keys & ugame.K_SELECT:  # select
+            pass
+        if keys & ugame.K_RIGHT != 0:  # right
+            if vilheleme.x > constants.SCREEN_X - constants.SPRITE_SIZE:
+                vilheleme.move(constants.SCREEN_X - constants.SPRITE_SIZE,
+                               vilheleme.y)
+            else:
+                vilheleme.move(vilheleme.x + 1, vilheleme.y)
+            pass
+        if keys & ugame.K_LEFT:  # left
+            pass
+        if keys & ugame.K_UP:  # up
+            pass
+        if keys & ugame.K_DOWN:  # down
+            pass
 
 if __name__ == "__main__":
     splash_scene()
-
