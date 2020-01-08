@@ -117,13 +117,25 @@ def game_scene():
                                vilheleme.y)
             else:
                 vilheleme.move(vilheleme.x + 1, vilheleme.y)
-            pass
         if keys & ugame.K_LEFT:  # left
-            pass
+            if vilheleme.x < 0:
+                vilheleme.move(0, vilheleme.y)
+            else:
+                vilheleme.move(vilheleme.x - 1, vilheleme.y)
         if keys & ugame.K_UP:  # up
-            pass
+            if vilheleme.y < 0:
+                vilheleme.move(vilheleme.x, 0)
+            else:
+                vilheleme.move(vilheleme.x, vilheleme.y - 1)
         if keys & ugame.K_DOWN:  # down
-            pass
+            if vilheleme.y > constants.SCREEN_Y - 8:
+                vilheleme.move(vilheleme.x,
+                               constants.SCREEN_Y - 8)
+            else:
+                vilheleme.move(vilheleme.x, vilheleme.y + 1)
+
+        game.render_sprites(sprites)
+        game.tick()
 
 if __name__ == "__main__":
     splash_scene()
