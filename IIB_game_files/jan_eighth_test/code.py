@@ -83,7 +83,7 @@ def game_scene():
     start_button = constants.button_state["button_up"]
     select_button = constants.button_state["button_up"]
 
-    lavender_first = open("lavender_first.mp3", 'rb')
+    lavender_first = open("coin.wav", 'rb')
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
@@ -140,7 +140,7 @@ def game_scene():
                 vilheleme.move(vilheleme.x, vilheleme.y + 1)
 
         if a_button == constants.button_state["button_just_pressed"]:
-                                            sound.play(lavender_first)
+            sound.play(lavender_first)
 
         game.render_sprites(sprites)
         game.tick()
