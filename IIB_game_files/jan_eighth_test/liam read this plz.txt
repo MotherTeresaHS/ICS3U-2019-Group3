@@ -1,0 +1,16 @@
+help i have no clue how to make an image bank
+
+also, if you want to see if the mp3's will work, i have no idea what im doing with coding music into the code, ill try to do it tomorrow if you cant
+
+if they dont work, maybe work on making an image bank for the big vilheleme guy as well as making an image bank for the text "Ice Ice Baby", (i made the file "e(wip)" cause i was fidgeting with gimp, idk if its useful)
+    i liked the font i used in "e(wip" but if you waqtn, you can change it.
+
+make sure to change all of the files that have IIB in them to have lower case letters
+
+    i can edit sound files and youtube videos to get into our game so if you watna specific sound or snippet of a song, let me know
+    
+also, get rid of any unnesesary files in the folders and make new folders if nessesary.
+
+also, add comments becuase its a bit difficult to see what youve done and what you havent. for example, add a comment but at the end of it, put the date and the time of making the comment... # comment here // jan 9, 12:56PM
+
+    i dont want to stress you ouyt with this, and im sorry i havent been doing much. when i understand how to work this code some more, we'll be on a roll, i promise :)
