@@ -189,4 +189,4 @@ def game_over_scene(final_score):
 
 
 if __name__ == "__main__":
-    blank_white_reset_scene()
+    blank_white_reset_scene
