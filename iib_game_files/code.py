@@ -242,8 +242,24 @@ def game_scene():
             else:
                 pass
 
-#        if a_button == constants.button_state["button_just_pressed"]:
-#                                            sound.play(lavender_first)
+        for water_sprites in range(len(a_single_water)):
+            if a_single_water[water_sprites].x > 0:
+                if stage.collide(a_single_water[water_sprites].x + 1, a_single_water[water_sprites].y,
+                                 a_single_water[water_sprites].x + 15, a_single_water[water_sprites].y + 15,
+                                 vilheleme.x, vilheleme.y,
+                                 vilheleme.x + 15, vilheleme.y + 15):
+                    # alien hit the ship
+                    sound.stop()
+                    sound.play(crash_sound)
+                    for pixel_number in range(0, 5):
+                        pixels[pixel_number] = (25, 0, 25)
+                    pixels.show()
+                    # Wait for 1 seconds
+                    time.sleep(4.0)
+                    # need to release the NeoPixels
+                    pixels.deinit()
+                    sound.stop()
+                    game_over_scene(score)
 
         game.render_sprites(vilheleme, water_sprites, ice_sprites,
                             wall_sprites, key, door, finish)
@@ -268,3 +284,7 @@ def game_scene():
 
 if __name__ == "__main__":
     splash_scene()
+
+#        if a_button == constants.button_state["button_just_pressed"]:
+#                                            sound.play(lavender_first)
+251-262

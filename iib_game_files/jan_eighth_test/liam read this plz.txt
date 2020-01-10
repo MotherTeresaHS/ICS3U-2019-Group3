@@ -14,3 +14,14 @@ also, get rid of any unnesesary files in the folders and make new folders if nes
 also, add comments becuase its a bit difficult to see what youve done and what you havent. for example, add a comment but at the end of it, put the date and the time of making the comment... # comment here // jan 9, 12:56PM
 
     i dont want to stress you ouyt with this, and im sorry i havent been doing much. when i understand how to work this code some more, we'll be on a roll, i promise :)
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    - instead of water, add dark matter when you move
