@@ -75,14 +75,13 @@ def menu_scene():
 
 
 def game_scene():
-    vilheleme = []  # 2nd or 3rd sprite
+    vilheleme_list = []  # 2nd or 3rd sprite
     water_sprites = []  # 4th or 5th sprite
     ice_sprites = []  # 6th sprite
     wall_sprites = []  # 11th sprite
-    key = []  # 7th sprite
-    door = []  # 8th sprite
-    finish = []  # 10th sprite
-
+    key_list = []  # 7th sprite
+    door_list = []  # 8th sprite
+    finish_list = []  # 10th sprite
 
     # buttons that keep state information
     a_button = constants.button_state["button_up"]
@@ -101,18 +100,55 @@ def game_scene():
 
     image_bank_1 = stage.Bank.from_bmp16("iib_sprites.bmp")
 
-    vilheleme = stage.Sprite(image_bank_1, 2, int(constants.SCREEN_X / 2 -
-                        constants.SPRITE_SIZE / 2),
-                        int(constants.SCREEN_Y - constants.SPRITE_SIZE +
-                        constants.SPRITE_SIZE / 2))
-    vilheleme.append(vilheleme)  # insert at the top of sprite list
+    # create vilheleme
+    vilheleme = stage.Sprite(image_bank_1, 2, 48, 48)
+    vilheleme_list.append(vilheleme)  # insert at the top of sprite list
 
+    # create ice
+    for ice_number in range(constants.TOTAL_NUMBER_OF_ICE):
+        a_single_ice = stage.Sprite(image_bank_1, 6,
+                                      constants.OFF_SCREEN_X,
+                                      constants.OFF_SCREEN_Y)
+        ice_sprites.append(a_single_ice)
+
+    # create walls
+    for wall_number in range(constants.TOTAL_NUMBER_OF_WALLS):
+        a_single_wall = stage.Sprite(image_bank_1, 11,
+                                      constants.OFF_SCREEN_X,
+                                      constants.OFF_SCREEN_Y)
+        wall_sprites.append(a_single_wall)
+
+    # create water
+    for water_number in range(constants.TOTAL_NUMBER_OF_WATER):
+        a_single_water = stage.Sprite(image_bank_1, 4,
+                                      constants.OFF_SCREEN_X,
+                                      constants.OFF_SCREEN_Y)
+        water_sprites.append(a_single_water)
+
+    # create key
+    key = stage.Sprite(image_bank_1, 7, constants.OFF_SCREEN_X,
+                                constants.OFF_SCREEN_Y)
+    key_list.append(key)  # insert at the top of sprite list
+
+    # create door
+    door = stage.Sprite(image_bank_1, 8, constants.OFF_SCREEN_X,
+                                constants.OFF_SCREEN_Y)
+    door_list.append(door)  # insert at the top of sprite list
+
+    # create finish
+    finish = stage.Sprite(image_bank_1, 10, constants.OFF_SCREEN_X,
+                                constants.OFF_SCREEN_Y)
+    finish_list.append(finish)  # insert at the top of sprite list
+
+    # create background
     background = stage.Grid(image_bank_1, constants.SCREEN_X,
                             constants.SCREEN_Y)
 
+    # V If game lags, change this V
     game = stage.Stage(ugame.display, constants.FPS)
+
     # V add layers here V
-    game.layers = vilheleme + [background]
+    game.layers = vilheleme_list + water_sprites + ice_sprites + wall_sprites + key_list + door_list + finish_list + [background]
     game.render_block()
 
     while True:
@@ -209,8 +245,26 @@ def game_scene():
 #        if a_button == constants.button_state["button_just_pressed"]:
 #                                            sound.play(lavender_first)
 
-        game.render_sprites(vilheleme)
+        game.render_sprites(vilheleme, water_sprites, ice_sprites,
+                            wall_sprites, key, door, finish)
         game.tick()
+
+        LVL_1()
+
+        def LVL_1():
+            # This is level one.
+
+            counter = 0
+
+#            if vilheleme.x < 0:
+#                vilheleme.move(32, 32)
+
+#            if wall_sprites[counter].x < 0:
+#                wall_sprites[counter].move(16, 16)
+#                counter += 1
+
+
+
 
 if __name__ == "__main__":
     splash_scene()
