@@ -6,8 +6,6 @@
 
 import ugame
 import stage
-import time
-import random
 import constants
 
 
@@ -1223,7 +1221,7 @@ def game_over(score):
                             constants.SCREEN_Y)
     for x_location in range(constants.SCREEN_GRID_X):
         for y_location in range(constants.SCREEN_GRID_X):
-            background.tile(x_location, y_location, 15)
+            background.tile(x_location, y_location, 3)
 
     sprites = []
     text = []
@@ -1231,7 +1229,7 @@ def game_over(score):
     text_game_over_list = []
     text_game_over = stage.Text(width=29, height=12, font=None,
                        palette=constants.ICE_ICE_BABY_PALETTE, buffer=None)
-    text_game_over.move(30, 6)
+    text_game_over.move(45, 40)
     text_game_over.text("Game Over")
     text.append(text_game_over)
 
@@ -1243,10 +1241,10 @@ def game_over(score):
         score_text = stage.Text(width=29, height=14, font=None, palette=constants.SCORE_PALETTE, buffer=None)
         score_text.clear()
         score_text.cursor(0, 0)
-        score_text.move(1, 1)
+        score_text.move(16, 90)
         score_text.text("Final Score: {0}".format(score))
 
-        game.layers = [score_text] + [background]
+        game.layers = [score_text] + [text_game_over] + [background]
         game.render_block()
 
 if __name__ == "__main__":
