@@ -727,52 +727,58 @@ def lvl_2(score):
         wall_sprites[counter].move(0, 80)
         counter += 1
     if wall_sprites[counter].x < 0:
+        wall_sprites[counter].move(0, 96)
+        counter += 1
+    if wall_sprites[counter].x < 0:
+        wall_sprites[counter].move(0, 112)
+        counter += 1
+    if wall_sprites[counter].x < 0:
         wall_sprites[counter].move(16, 48)
         counter += 1
     if wall_sprites[counter].x < 0:
-        wall_sprites[counter].move(16, 80)
+        wall_sprites[counter].move(16, 112)
         counter += 1
     if wall_sprites[counter].x < 0:
         wall_sprites[counter].move(32, 48)
         counter += 1
     if wall_sprites[counter].x < 0:
-        wall_sprites[counter].move(32, 80)
+        wall_sprites[counter].move(32, 112)
         counter += 1
     if wall_sprites[counter].x < 0:
         wall_sprites[counter].move(48, 48)
         counter += 1
     if wall_sprites[counter].x < 0:
-        wall_sprites[counter].move(48, 80)
+        wall_sprites[counter].move(48, 112)
         counter += 1
     if wall_sprites[counter].x < 0:
         wall_sprites[counter].move(64, 48)
         counter += 1
     if wall_sprites[counter].x < 0:
-        wall_sprites[counter].move(64, 80)
+        wall_sprites[counter].move(64, 112)
         counter += 1
     if wall_sprites[counter].x < 0:
         wall_sprites[counter].move(80, 48)
         counter += 1
     if wall_sprites[counter].x < 0:
-        wall_sprites[counter].move(80, 80)
+        wall_sprites[counter].move(80, 112)
         counter += 1
     if wall_sprites[counter].x < 0:
         wall_sprites[counter].move(96, 48)
         counter += 1
     if wall_sprites[counter].x < 0:
-        wall_sprites[counter].move(96, 80)
+        wall_sprites[counter].move(96, 112)
         counter += 1
     if wall_sprites[counter].x < 0:
         wall_sprites[counter].move(112, 48)
         counter += 1
     if wall_sprites[counter].x < 0:
-        wall_sprites[counter].move(112, 80)
+        wall_sprites[counter].move(112, 112)
         counter += 1
     if wall_sprites[counter].x < 0:
         wall_sprites[counter].move(128, 48)
         counter += 1
     if wall_sprites[counter].x < 0:
-        wall_sprites[counter].move(128, 80)
+        wall_sprites[counter].move(128, 112)
         counter += 1
     if wall_sprites[counter].x < 0:
         wall_sprites[counter].move(144, 48)
@@ -782,6 +788,12 @@ def lvl_2(score):
         counter += 1
     if wall_sprites[counter].x < 0:
         wall_sprites[counter].move(144, 80)
+        counter += 1
+    if wall_sprites[counter].x < 0:
+        wall_sprites[counter].move(144, 96)
+        counter += 1
+    if wall_sprites[counter].x < 0:
+        wall_sprites[counter].move(144, 112)
         counter += 1
 
     counter = 0
@@ -809,20 +821,68 @@ def lvl_2(score):
     if ice_sprites[counter].x < 0:
         ice_sprites[counter].move(128, 64)
         counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(16, 80)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(32, 80)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(48, 80)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(64, 80)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(80, 80)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(96, 80)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(112, 80)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(128, 80)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(16, 96)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(32, 96)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(48, 96)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(64, 96)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(80, 96)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(96, 96)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(112, 96)
+        counter += 1
+    if ice_sprites[counter].x < 0:
+        ice_sprites[counter].move(128, 96)
+        counter += 1
 
     counter = 0
     if key_list[counter].x < 0:
-        key_list[counter].move(64, 64)
+        key_list[counter].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
         counter += 1
 
     counter = 0
     if door_list[counter].x < 0:
-        door_list[counter].move(96, 64)
+        door_list[counter].move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
         counter += 1
 
     counter = 0
     if finish_list[counter].x < 0:
-        finish_list[counter].move(128, 64)
+        finish_list[counter].move(128, 96)
         counter += 1
 
     # V If game lags, change this V
