@@ -672,21 +672,21 @@ def lvl_2(score):
     vilheleme_list.append(vilheleme)  # insert at the top of sprite list
 
     # create ice
-    for ice_number in range(constants.TOTAL_NUMBER_OF_ICE):
+    for ice_number in range(constants.TOTAL_NUMBER_OF_ICE_2):
         a_single_ice = stage.Sprite(image_bank_1, 7,
                                       constants.OFF_SCREEN_X,
                                       constants.OFF_SCREEN_Y)
         ice_sprites.append(a_single_ice)
 
     # create walls
-    for wall_number in range(constants.TOTAL_NUMBER_OF_WALLS):
+    for wall_number in range(constants.TOTAL_NUMBER_OF_WALLS_2):
         a_single_wall = stage.Sprite(image_bank_1, 14,
                                       constants.OFF_SCREEN_X,
                                       constants.OFF_SCREEN_Y)
         wall_sprites.append(a_single_wall)
 
     # create water
-    for water_number in range(constants.TOTAL_NUMBER_OF_WATER):
+    for water_number in range(constants.TOTAL_NUMBER_OF_WATER_2):
         a_single_water = stage.Sprite(image_bank_1, 4,
                                       constants.OFF_SCREEN_X,
                                       constants.OFF_SCREEN_Y)
