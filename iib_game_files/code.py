@@ -7,8 +7,6 @@
 
 import ugame
 import stage
-import time
-import random
 import constants
 
 
@@ -400,6 +398,7 @@ def lvl_1():
                                 water_sprites[counter_r].move(vilheleme.x - constants.SPRITE_SIZE, vilheleme.y)
                                 counter_r += 1
                                 score += 100
+                                
                 for wall_number in range(len(wall_sprites)):
                     if vilheleme.x > 0:
                         if stage.collide(wall_sprites[wall_number].x, wall_sprites[wall_number].y,
@@ -450,16 +449,6 @@ def lvl_1():
         if keys & ugame.K_LEFT != 0:  # left
             if left_button == constants.button_state["button_just_pressed"]:
                 vilheleme.move(vilheleme.x - constants.SPRITE_SIZE, vilheleme.y)
-                for ice_number in range(len(ice_sprites)):
-                    if vilheleme.x > 0:
-                        if stage.collide(ice_sprites[ice_number].x, ice_sprites[ice_number].y,
-                                         ice_sprites[ice_number].x + 15, ice_sprites[ice_number].y + 15,
-                                         vilheleme_list[0].x, vilheleme_list[0].y,
-                                         vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
-                            if water_sprites[counter_r].x < 0:
-                                water_sprites[counter_r].move(vilheleme.x + constants.SPRITE_SIZE, vilheleme.y)
-                                counter_r += 1
-                                score += 100
                 for wall_number in range(len(wall_sprites)):
                     if vilheleme.x > 0:
                         if stage.collide(wall_sprites[wall_number].x, wall_sprites[wall_number].y,
@@ -467,6 +456,7 @@ def lvl_1():
                                          vilheleme_list[0].x, vilheleme_list[0].y,
                                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
                             vilheleme.move(vilheleme.x + constants.SPRITE_SIZE, vilheleme.y)
+
                 for door_number in range(len(door_list)):
                     if vilheleme.x > 0:
                         if stage.collide(door_list[0].x, door_list[0].y,
@@ -566,6 +556,7 @@ def lvl_1():
                                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
                             game_over(score)
 
+
             game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
             game.tick()
 
@@ -630,6 +621,7 @@ def lvl_1():
             game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
             game.tick()
 
+
         if stage.collide(key_list[0].x, key_list[0].y,
                          key_list[0].x + 15, key_list[0].y + 15,
                          vilheleme_list[0].x, vilheleme_list[0].y,
@@ -642,11 +634,31 @@ def lvl_1():
                          finish_list[0].x + 15, finish_list[0].y + 15,
                          vilheleme_list[0].x, vilheleme_list[0].y,
                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
-            finish_number.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
-            water_number.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
-            wall_number.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
-            ice_number.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
-            vilheleme.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+
+            score += 1000
+            counter_r = 0
+            vilheleme_list = None
+            water_sprites = None
+            ice_sprites = None
+            key_list = None
+            door_list = None
+            finish_list = None
+            wall_sprites = None
+            lvl_2(score)
+
+            game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
+            game.tick()
+
+        for water_number in range(len(water_sprites)):
+            if stage.collide(water_sprites[water_number].x, water_sprites[water_number].y,
+                             water_sprites[water_number].x + 15, water_sprites[water_number].y + 15,
+                             vilheleme_list[0].x, vilheleme_list[0].y,
+                             vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
+                game_over(score)
+        
+                game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
+                game.tick()
+
 
 
 def lvl_2(score):
@@ -681,25 +693,27 @@ def lvl_2(score):
     image_bank_1 = stage.Bank.from_bmp16("iib_sprites.bmp")
 
     # create vilheleme
+
     vilheleme = stage.Sprite(image_bank_1, 2, 16, 48)
+
     vilheleme_list.append(vilheleme)  # insert at the top of sprite list
 
     # create ice
-    for ice_number in range(constants.TOTAL_NUMBER_OF_ICE):
+    for ice_number in range(constants.TOTAL_NUMBER_OF_ICE_2):
         a_single_ice = stage.Sprite(image_bank_1, 7,
                                       constants.OFF_SCREEN_X,
                                       constants.OFF_SCREEN_Y)
         ice_sprites.append(a_single_ice)
 
     # create walls
-    for wall_number in range(constants.TOTAL_NUMBER_OF_WALLS):
+    for wall_number in range(constants.TOTAL_NUMBER_OF_WALLS_2):
         a_single_wall = stage.Sprite(image_bank_1, 14,
                                       constants.OFF_SCREEN_X,
                                       constants.OFF_SCREEN_Y)
         wall_sprites.append(a_single_wall)
 
     # create water
-    for water_number in range(constants.TOTAL_NUMBER_OF_WATER):
+    for water_number in range(constants.TOTAL_NUMBER_OF_WATER_2):
         a_single_water = stage.Sprite(image_bank_1, 4,
                                       constants.OFF_SCREEN_X,
                                       constants.OFF_SCREEN_Y)
@@ -899,10 +913,6 @@ def lvl_2(score):
     # V If game lags, change this V
     game = stage.Stage(ugame.display, constants.FPS)
 
-    # V add layers here V
-    #game.layers = vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites + [score_text] + [level_text] + [background]
-    #game.render_block()
-
 
     # sound.play(press_start_audio)
 
@@ -995,6 +1005,7 @@ def lvl_2(score):
                                          vilheleme_list[0].x, vilheleme_list[0].y,
                                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
                             vilheleme.move(vilheleme.x - constants.SPRITE_SIZE, vilheleme.y)
+                            
                 for door_number in range(len(door_list)):
                     if vilheleme.x > 0:
                         if stage.collide(door_list[0].x, door_list[0].y,
@@ -1055,6 +1066,7 @@ def lvl_2(score):
                                          vilheleme_list[0].x, vilheleme_list[0].y,
                                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
                             vilheleme.move(vilheleme.x + constants.SPRITE_SIZE, vilheleme.y)
+
                 for door_number in range(len(door_list)):
                     if vilheleme.x > 0:
                         if stage.collide(door_list[0].x, door_list[0].y,
@@ -1093,6 +1105,7 @@ def lvl_2(score):
                                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
                             game_over(score)
 
+
             game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
             game.tick()
 
@@ -1116,6 +1129,7 @@ def lvl_2(score):
                                          vilheleme_list[0].x, vilheleme_list[0].y,
                                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
                             vilheleme.move(vilheleme.x, vilheleme.y + constants.SPRITE_SIZE)
+
                 for door_number in range(len(door_list)):
                     if vilheleme.x > 0:
                         if stage.collide(door_list[0].x, door_list[0].y,
@@ -1153,6 +1167,7 @@ def lvl_2(score):
                                          vilheleme_list[0].x, vilheleme_list[0].y,
                                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
                             game_over(score)
+
 
             game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
             game.tick()
@@ -1177,6 +1192,7 @@ def lvl_2(score):
                                          vilheleme_list[0].x, vilheleme_list[0].y,
                                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
                             vilheleme.move(vilheleme.x, vilheleme.y - constants.SPRITE_SIZE)
+
                 for door_number in range(len(door_list)):
                     if vilheleme.x > 0:
                         if stage.collide(door_list[0].x, door_list[0].y,
@@ -1215,8 +1231,7 @@ def lvl_2(score):
                                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
                             game_over(score)
 
-            game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
-            game.tick()
+
 
         if stage.collide(key_list[0].x, key_list[0].y,
                          key_list[0].x + 15, key_list[0].y + 15,
@@ -1227,6 +1242,35 @@ def lvl_2(score):
             # make key collecting sound
     
 
+        if stage.collide(finish_list[0].x, finish_list[0].y,
+                         finish_list[0].x + 15, finish_list[0].y + 15,
+                         vilheleme_list[0].x, vilheleme_list[0].y,
+                         vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
+            score += 1000
+            counter_r = 0
+            vilheleme_list = None
+            water_sprites = None
+            ice_sprites = None
+            key_list = None
+            door_list = None
+            finish_list = None
+            wall_sprites = None
+            game_over(score)
+
+            game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
+            game.tick()
+
+        for water_number in range(len(water_sprites)):
+            if stage.collide(water_sprites[water_number].x, water_sprites[water_number].y,
+                             water_sprites[water_number].x + 15, water_sprites[water_number].y + 15,
+                             vilheleme_list[0].x, vilheleme_list[0].y,
+                             vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
+                game_over(score)
+    
+                game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
+                game.tick()
+
+
 def game_over(score):
 
     image_bank_1 = stage.Bank.from_bmp16("iib_sprites.bmp")
@@ -1234,7 +1278,7 @@ def game_over(score):
                             constants.SCREEN_Y)
     for x_location in range(constants.SCREEN_GRID_X):
         for y_location in range(constants.SCREEN_GRID_X):
-            background.tile(x_location, y_location, 15)
+            background.tile(x_location, y_location, 3)
 
     sprites = []
     text = []
@@ -1242,7 +1286,7 @@ def game_over(score):
     text_game_over_list = []
     text_game_over = stage.Text(width=29, height=12, font=None,
                        palette=constants.ICE_ICE_BABY_PALETTE, buffer=None)
-    text_game_over.move(30, 6)
+    text_game_over.move(45, 40)
     text_game_over.text("Game Over")
     text.append(text_game_over)
 
@@ -1254,10 +1298,12 @@ def game_over(score):
         score_text = stage.Text(width=29, height=14, font=None, palette=constants.SCORE_PALETTE, buffer=None)
         score_text.clear()
         score_text.cursor(0, 0)
-        score_text.move(1, 1)
+
+        score_text.move(16, 90)
         score_text.text("Final Score: {0}".format(score))
 
-        game.layers = [score_text] + [background]
+        game.layers = [score_text] + [text_game_over] + [background]
+
         game.render_block()
 
 if __name__ == "__main__":
