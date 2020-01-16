@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Ice Ice Baby, A Circuit Python Game'
+project = u'Space Aliens - CircuitPython Game'
 copyright = u'2020, Mr. Coxall'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -216,7 +216,7 @@ latex_elements = {
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'toga.tex', u'Ice Ice Baby, A Circuit Python Game',
+  ('index', 'toga.tex', u'Space Aliens - CircuitPython Game',
    u'Mr. Coxall', 'manual'),
 ]
 
@@ -246,7 +246,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'CBPS', u'Ice Ice Baby, A Circuit Python Game',
+    ('index', 'CBPS', u'Space Aliens - CircuitPython Game',
      [u'Mr. Coxall'], 1)
 ]
 
@@ -260,8 +260,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'CBPS', u'Ice Ice Baby, A Circuit Python Game',
-   u'Mr. Coxall', 'Ice Ice Baby', 'Ice Ice Baby, A Circuit Python Game',
+  ('index', 'CBPS', u'Space Aliens - CircuitPython Game',
+   u'Mr. Coxall', 'Space Aliens', 'Space Aliens - CircuitPython Game',
    'Miscellaneous'),
 ]
 
