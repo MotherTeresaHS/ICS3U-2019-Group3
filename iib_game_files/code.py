@@ -121,6 +121,17 @@ def menu_scene():
 
 
 def lvl_1():
+
+    # get sound ready
+    # press_start_audio = open("press_start_audio.wav", 'rb')
+    # sound = ugame.audio
+    # sound.stop()
+    # sound.mute(False)
+
+    # score
+    score = 0
+    level = 1
+
     vilheleme_list = []
     water_sprites = []
     ice_sprites = []
@@ -128,16 +139,6 @@ def lvl_1():
     door_list = []
     finish_list = []
     wall_sprites = []
-
-    # get sound ready
-    #press_start_audio = open("press_start_audio.wav", 'rb')
-    #sound = ugame.audio
-    #sound.stop()
-    #sound.mute(False)
-
-    # score
-    score = 0
-    level = 1
 
     # buttons that keep state information
     a_button = constants.button_state["button_up"]
@@ -311,8 +312,8 @@ def lvl_1():
     game = stage.Stage(ugame.display, constants.FPS)
 
     # V add layers here V
-    #game.layers = vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites + [score_text] + [level_text] + [background]
-    #game.render_block()
+    # game.layers = vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites + [score_text] + [level_text] + [background]
+    # game.render_block()
 
 
 #    sound.play(press_start_audio)
@@ -522,7 +523,7 @@ def lvl_1():
                                 score += 100
                 for wall_number in range(len(wall_sprites)):
                     if vilheleme.x > 0:
-                        if stage.collide(wall_sprites[wall_number].x, wall_sprites[wall_number].y,
+                        if stage.collide(w all_sprites[wall_number].x, wall_sprites[wall_number].y,
                                          wall_sprites[wall_number].x + 15, wall_sprites[wall_number].y + 15,
                                          vilheleme_list[0].x, vilheleme_list[0].y,
                                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
@@ -637,22 +638,23 @@ def lvl_1():
             door.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
             # make key collecting sound
 
+        if stage.collide(finish_list[0].x, finish_list[0].y,
+                         finish_list[0].x + 15, finish_list[0].y + 15,
+                         vilheleme_list[0].x, vilheleme_list[0].y,
+                         vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
+            finish_number.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+            water_number.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+            wall_number.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+            ice_number.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+            vilheleme.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
+
 
 def lvl_2(score):
-
-    vilheleme_list = []
-    water_sprites = []
-    ice_sprites = []
-    key_list = []
-    door_list = []
-    finish_list = []
-    wall_sprites = []
-
     # get sound ready
-    #press_start_audio = open("press_start_audio.wav", 'rb')
-    #sound = ugame.audio
-    #sound.stop()
-    #sound.mute(False)
+    # press_start_audio = open("press_start_audio.wav", 'rb')
+    # sound = ugame.audio
+    # sound.stop()
+    # sound.mute(False)
 
     # score
     score = score
@@ -667,6 +669,14 @@ def lvl_2(score):
     right_button = constants.button_state["button_up"]
     start_button = constants.button_state["button_up"]
     select_button = constants.button_state["button_up"]
+
+    vilheleme_list = []
+    water_sprites = []
+    ice_sprites = []
+    key_list = []
+    door_list = []
+    finish_list = []
+    wall_sprites = []
 
     image_bank_1 = stage.Bank.from_bmp16("iib_sprites.bmp")
 
@@ -894,7 +904,7 @@ def lvl_2(score):
     #game.render_block()
 
 
-#    sound.play(press_start_audio)
+    # sound.play(press_start_audio)
 
     counter_r = 0
 
@@ -1215,7 +1225,7 @@ def lvl_2(score):
             key.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
             door.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
             # make key collecting sound
-
+    
 
 def game_over(score):
 
