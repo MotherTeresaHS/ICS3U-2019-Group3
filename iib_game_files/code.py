@@ -7,52 +7,10 @@
 import ugame
 import stage
 import constants
-
+import time
 
 def splash_scene():
-    image_bank_1 = stage.Bank.from_bmp16("iib_sprites.bmp")
-    background = stage.Grid(image_bank_1, constants.SCREEN_GRID_X,
-                            constants.SCREEN_GRID_Y)
-    for x_location in range(constants.SCREEN_GRID_X):
-        for y_location in range(constants.SCREEN_GRID_Y):
-            background.tile(x_location, y_location, 15)
 
-    sprites = []
-    text = []
-    text3 = []
-    text3_list = []
-    text3 = stage.Text(width=29, height=12, font=None,
-                       palette=constants.ICE_ICE_BABY_PALETTE, buffer=None)
-    text3.move(30, 6)
-    text3.text("Ice Ice Baby")
-    text.append(text3)
-    text4 = []
-    text4_list = []
-    text4 = stage.Text(width=17, height=5, font=None,
-                       palette=constants.ICE_ICE_BABY_PALETTE, buffer=None)
-    text4.move(16, 116)
-    text4.text("Press A To Begin")
-    text.append(text4)
-    # text5 = []
-    # text5_list = []
-    # text5 = stage.Text(width=17, height=5, font=None,
-    #                    palette=constants.ICE_ICE_BABY_PALETTE, buffer=None)
-    # text5.move(16, 10)
-    # text5.text("Created By: Liam Hearty & Joseph Palermo")
-    # text.append(text5)
-
-    game = stage.Stage(ugame.display, constants.FPS)
-    game.layers = text + sprites + [background]
-    game.render_block()
-
-    while True:
-        keys = ugame.buttons.get_pressed()
-        if keys & ugame.K_X != 0:
-            menu_scene()
-        game.tick()
-
-
-def menu_scene():
     image_bank_2 = stage.Bank.from_bmp16("mt_game_studio.bmp")
     background = stage.Grid(image_bank_2, constants.SCREEN_GRID_X,
                             constants.SCREEN_GRID_Y)
@@ -85,10 +43,10 @@ def menu_scene():
     background.tile(7, 5, 0)  # blank white
 
     # get sound ready
-    #boot_up = open("boot_up.wav", 'rb')
-    #sound = ugame.audio
-    #sound.stop()
-    #sound.mute(False)
+    boot_up = open("boot_up.wav", 'rb')
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
 
     sprites = []
     text = []
@@ -100,11 +58,53 @@ def menu_scene():
     text.append(text1)
     text2 = stage.Text(width=15, height=5, font=None,
                         palette=constants.NEW_PALETTE, buffer=None)
-    text2.move(35, 110)
-    text2.text("Press Start")
+    text2.move(30, 100)
+    text2.text("Made by        Liam & Joseph")
     text.append(text2)
 
-#    sound.play(boot_up)
+    sound.play(boot_up)
+
+    game = stage.Stage(ugame.display, constants.FPS)
+    game.layers = text + sprites + [background]
+    game.render_block()
+
+    image_bank_1 = stage.Bank.from_bmp16("iib_sprites.bmp")
+    background = stage.Grid(image_bank_1, constants.SCREEN_GRID_X,
+                            constants.SCREEN_GRID_Y)
+    for x_location in range(constants.SCREEN_GRID_X):
+        for y_location in range(constants.SCREEN_GRID_Y):
+            background.tile(x_location, y_location, 15)
+
+    time.sleep(3)
+    menu_scene()
+    game.tick()
+
+
+def menu_scene():
+
+    image_bank_1 = stage.Bank.from_bmp16("iib_sprites.bmp")
+    background = stage.Grid(image_bank_1, constants.SCREEN_GRID_X,
+                            constants.SCREEN_GRID_Y)
+    for x_location in range(constants.SCREEN_GRID_X):
+        for y_location in range(constants.SCREEN_GRID_Y):
+            background.tile(x_location, y_location, 15)
+
+    sprites = []
+    text = []
+    text3 = []
+    text3_list = []
+    text3 = stage.Text(width=29, height=12, font=None,
+                       palette=constants.ICE_ICE_BABY_PALETTE, buffer=None)
+    text3.move(30, 6)
+    text3.text("Ice Ice Baby")
+    text.append(text3)
+    text4 = []
+    text4_list = []
+    text4 = stage.Text(width=17, height=5, font=None,
+                       palette=constants.ICE_ICE_BABY_PALETTE, buffer=None)
+    text4.move(16, 116)
+    text4.text("Press A To Begin")
+    text.append(text4)
 
     game = stage.Stage(ugame.display, constants.FPS)
     game.layers = text + sprites + [background]
@@ -115,7 +115,8 @@ def menu_scene():
 
     while True:
         keys = ugame.buttons.get_pressed()
-        if keys & ugame.K_START != 0:
+        if keys & ugame.K_X != 0:
+            final_score = 0
             score = lvl_1()
             lvl1 = 1
         game.tick()
@@ -127,7 +128,6 @@ def menu_scene():
             game_over(final_score)
         game.tick()
 
-
 def lvl_1():
     vilheleme_list = []
     water_sprites = []
@@ -138,12 +138,18 @@ def lvl_1():
     wall_sprites = []
 
     # get sound ready
-    #press_start_audio = open("press_start_audio.wav", 'rb')
-    #sound = ugame.audio
-    #sound.stop()
-    #sound.mute(False)
+    press_start_audio = open("press_start_audio.wav", 'rb')
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
 
-    # score
+    # get sound ready
+    key_collect = open("key_collect.wav", 'rb')
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
+
+    # score and level
     score = 0
     level = 1
 
@@ -318,12 +324,7 @@ def lvl_1():
     # V If game lags, change this V
     game = stage.Stage(ugame.display, constants.FPS)
 
-    # V add layers here V
-    #game.layers = vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites + [score_text] + [level_text] + [background]
-    #game.render_block()
-
-
-#    sound.play(press_start_audio)
+    sound.play(press_start_audio)
 
     counter_r = 0
 
@@ -412,14 +413,8 @@ def lvl_1():
 
         if keys & ugame.K_LEFT != 0:  # left
             if left_button == constants.button_state["button_just_pressed"]:
-                vilheleme.move(vilheleme.x - constants.SPRITE_SIZE, vilheleme.y)
-                for wall_number in range(len(wall_sprites)):
-                    if vilheleme.x > 0:
-                        if stage.collide(wall_sprites[wall_number].x, wall_sprites[wall_number].y,
-                                         wall_sprites[wall_number].x + 15, wall_sprites[wall_number].y + 15,
-                                         vilheleme_list[0].x, vilheleme_list[0].y,
-                                         vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
-                            vilheleme.move(vilheleme.x + constants.SPRITE_SIZE, vilheleme.y)
+                if vilheleme.x > 16:
+                    vilheleme.move(vilheleme.x - constants.SPRITE_SIZE, vilheleme.y)
 
             game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
             game.tick()
@@ -431,7 +426,6 @@ def lvl_1():
                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
             key.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
             door.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
-            # make key collecting sound
 
         if stage.collide(finish_list[0].x, finish_list[0].y,
                          finish_list[0].x + 15, finish_list[0].y + 15,
@@ -439,13 +433,7 @@ def lvl_1():
                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
             score += 1000
             counter_r = 0
-            vilheleme_list = None
-            water_sprites = None
-            ice_sprites = None
-            key_list = None
-            door_list = None
-            finish_list = None
-            wall_sprites = None
+            sound.play(key_collect)
             return(score)
 
         for water_number in range(len(water_sprites)):
@@ -471,10 +459,16 @@ def lvl_2(score):
     wall_sprites = []
 
     # get sound ready
-    #press_start_audio = open("press_start_audio.wav", 'rb')
-    #sound = ugame.audio
-    #sound.stop()
-    #sound.mute(False)
+    press_start_audio = open("press_start_audio.wav", 'rb')
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
+
+    # get sound ready
+    key_collect = open("key_collect.wav", 'rb')
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
 
     level = 2
 
@@ -491,7 +485,7 @@ def lvl_2(score):
     image_bank_1 = stage.Bank.from_bmp16("iib_sprites.bmp")
 
     # create vilheleme
-    vilheleme = stage.Sprite(image_bank_1, 2, 0, 48)
+    vilheleme = stage.Sprite(image_bank_1, 2, 16, 48)
     vilheleme_list.append(vilheleme)  # insert at the top of sprite list
 
     # create ice
@@ -710,7 +704,7 @@ def lvl_2(score):
     game = stage.Stage(ugame.display, constants.FPS)
 
 
-#    sound.play(press_start_audio)
+    sound.play(press_start_audio)
 
     counter_r = 0
 
@@ -806,24 +800,18 @@ def lvl_2(score):
 
         if keys & ugame.K_LEFT != 0:  # left
             if left_button == constants.button_state["button_just_pressed"]:
-                vilheleme.move(vilheleme.x - constants.SPRITE_SIZE, vilheleme.y)
-                for ice_number in range(len(ice_sprites)):
-                    if vilheleme.x > 0:
-                        if stage.collide(ice_sprites[ice_number].x, ice_sprites[ice_number].y,
-                                         ice_sprites[ice_number].x + 15, ice_sprites[ice_number].y + 15,
-                                         vilheleme_list[0].x, vilheleme_list[0].y,
-                                         vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
-                            if water_sprites[counter_r].x < 0:
-                                water_sprites[counter_r].move(vilheleme.x + constants.SPRITE_SIZE, vilheleme.y)
-                                counter_r += 1
-                                score += 100
-                for wall_number in range(len(wall_sprites)):
-                    if vilheleme.x > 0:
-                        if stage.collide(wall_sprites[wall_number].x, wall_sprites[wall_number].y,
-                                         wall_sprites[wall_number].x + 15, wall_sprites[wall_number].y + 15,
-                                         vilheleme_list[0].x, vilheleme_list[0].y,
-                                         vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
-                            vilheleme.move(vilheleme.x + constants.SPRITE_SIZE, vilheleme.y)
+                if vilheleme.x > 16:
+                    vilheleme.move(vilheleme.x - constants.SPRITE_SIZE, vilheleme.y)
+                    for ice_number in range(len(ice_sprites)):
+                        if vilheleme.x > 0:
+                            if stage.collide(ice_sprites[ice_number].x, ice_sprites[ice_number].y,
+                                             ice_sprites[ice_number].x + 15, ice_sprites[ice_number].y + 15,
+                                             vilheleme_list[0].x, vilheleme_list[0].y,
+                                             vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
+                                if water_sprites[counter_r].x < 0:
+                                    water_sprites[counter_r].move(vilheleme.x + constants.SPRITE_SIZE, vilheleme.y)
+                                    counter_r += 1
+                                    score += 100
 
             game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
             game.tick()
@@ -880,7 +868,6 @@ def lvl_2(score):
                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
             key.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
             door.move(constants.OFF_SCREEN_X, constants.OFF_SCREEN_Y)
-            # make key collecting sound
 
         if stage.collide(finish_list[0].x, finish_list[0].y,
                          finish_list[0].x + 15, finish_list[0].y + 15,
@@ -895,6 +882,7 @@ def lvl_2(score):
             door_list = None
             finish_list = None
             wall_sprites = None
+            sound.play(key_collect)
             game_over(score)
 
             game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
@@ -926,23 +914,33 @@ def game_over(final_score):
     text_game_over_list = []
     text_game_over = stage.Text(width=29, height=12, font=None,
                        palette=constants.ICE_ICE_BABY_PALETTE, buffer=None)
-    text_game_over.move(45, 40)
+    text_game_over.move(45, 35)
     text_game_over.text("Game Over")
     text.append(text_game_over)
 
     # V If game lags, change this V
     game = stage.Stage(ugame.display, constants.FPS)
 
-    while True:
-        # add text at top of screen for score
-        score_text = stage.Text(width=29, height=14, font=None, palette=constants.SCORE_PALETTE, buffer=None)
-        score_text.clear()
-        score_text.cursor(0, 0)
-        score_text.move(16, 90)
-        score_text.text("Final Score: {0}".format(final_score))
+    # add text at top of screen for score
+    score_text = stage.Text(width=29, height=14, font=None, palette=constants.SCORE_PALETTE, buffer=None)
+    score_text.clear()
+    score_text.cursor(0, 0)
+    score_text.move(16, 100)
+    score_text.text("Final Score: {0}".format(final_score))
 
-        game.layers = [score_text] + [text_game_over] + [background]
-        game.render_block()
+    restart_text = stage.Text(width=11, height=14, font=None, palette=constants.SCORE_PALETTE, buffer=None)
+    restart_text.clear()
+    restart_text.cursor(0, 0)
+    restart_text.move(35, 70)
+    restart_text.text("Press Startto restart".format(final_score))
+
+    game.layers = [score_text] + [text_game_over] + [restart_text]+ [background]
+    game.render_block()
+
+    while True:
+        keys = ugame.buttons.get_pressed()
+        if keys & ugame.K_START != 0:
+            return menu_scene()
 
 if __name__ == "__main__":
     splash_scene()
