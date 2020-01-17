@@ -42,12 +42,6 @@ def splash_scene():
     background.tile(6, 5, 0)
     background.tile(7, 5, 0)  # blank white
 
-    # get sound ready
-    boot_up = open("boot_up.wav", 'rb')
-    sound = ugame.audio
-    sound.stop()
-    sound.mute(False)
-
     sprites = []
     text = []
     text2_list = []
@@ -61,8 +55,6 @@ def splash_scene():
     text2.move(30, 100)
     text2.text("Made by        Liam & Joseph")
     text.append(text2)
-
-    sound.play(boot_up)
 
     game = stage.Stage(ugame.display, constants.FPS)
     game.layers = text + sprites + [background]
@@ -136,18 +128,6 @@ def lvl_1():
     door_list = []
     finish_list = []
     wall_sprites = []
-
-    # get sound ready
-    press_start_audio = open("press_start_audio.wav", 'rb')
-    sound = ugame.audio
-    sound.stop()
-    sound.mute(False)
-
-    # get sound ready
-    key_collect = open("key_collect.wav", 'rb')
-    sound = ugame.audio
-    sound.stop()
-    sound.mute(False)
 
     # score and level
     score = 0
@@ -324,8 +304,6 @@ def lvl_1():
     # V If game lags, change this V
     game = stage.Stage(ugame.display, constants.FPS)
 
-    sound.play(press_start_audio)
-
     counter_r = 0
 
     while True:
@@ -433,7 +411,6 @@ def lvl_1():
                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
             score += 1000
             counter_r = 0
-            sound.play(key_collect)
             return(score)
 
         for water_number in range(len(water_sprites)):
@@ -457,18 +434,6 @@ def lvl_2(score):
     door_list = []
     finish_list = []
     wall_sprites = []
-
-    # get sound ready
-    press_start_audio = open("press_start_audio.wav", 'rb')
-    sound = ugame.audio
-    sound.stop()
-    sound.mute(False)
-
-    # get sound ready
-    key_collect = open("key_collect.wav", 'rb')
-    sound = ugame.audio
-    sound.stop()
-    sound.mute(False)
 
     level = 2
 
@@ -703,9 +668,6 @@ def lvl_2(score):
     # V If game lags, change this V
     game = stage.Stage(ugame.display, constants.FPS)
 
-
-    sound.play(press_start_audio)
-
     counter_r = 0
 
     while True:
@@ -882,7 +844,6 @@ def lvl_2(score):
             door_list = None
             finish_list = None
             wall_sprites = None
-            sound.play(key_collect)
             game_over(score)
 
             game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
