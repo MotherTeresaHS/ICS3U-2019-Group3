@@ -110,10 +110,21 @@ def menu_scene():
     game.layers = text + sprites + [background]
     game.render_block()
 
+    lvl1 = None
+    final_score = None
+
     while True:
         keys = ugame.buttons.get_pressed()
         if keys & ugame.K_START != 0:
-            lvl_1()
+            score = lvl_1()
+            lvl1 = 1
+        game.tick()
+        if lvl1 == 1:
+            final_score = lvl_2(score)
+            lvl1 = 2
+        game.tick()
+        if lvl1 == 2:
+            game_over(final_score)
         game.tick()
 
 
@@ -435,17 +446,15 @@ def lvl_1():
             door_list = None
             finish_list = None
             wall_sprites = None
-            lvl_2(score)
-
-            game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
-            game.tick()
+            return(score)
 
         for water_number in range(len(water_sprites)):
             if stage.collide(water_sprites[water_number].x, water_sprites[water_number].y,
                              water_sprites[water_number].x + 15, water_sprites[water_number].y + 15,
                              vilheleme_list[0].x, vilheleme_list[0].y,
                              vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
-                game_over(score)
+                final_score = score
+                game_over(final_score)
         
                 game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
                 game.tick()
@@ -467,8 +476,6 @@ def lvl_2(score):
     #sound.stop()
     #sound.mute(False)
 
-    # score
-    score = score
     level = 2
 
     # buttons that keep state information
@@ -898,17 +905,17 @@ def lvl_2(score):
                              water_sprites[water_number].x + 15, water_sprites[water_number].y + 15,
                              vilheleme_list[0].x, vilheleme_list[0].y,
                              vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
-                game_over(score)
-    
                 game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
                 game.tick()
+                final_score = score
+                return final_score
 
 
-def game_over(score):
+def game_over(final_score):
 
     image_bank_1 = stage.Bank.from_bmp16("iib_sprites.bmp")
-    background = stage.Grid(image_bank_1, constants.SCREEN_X,
-                            constants.SCREEN_Y)
+    background = stage.Grid(image_bank_1, constants.SCREEN_GRID_X,
+                            constants.SCREEN_GRID_Y)
     for x_location in range(constants.SCREEN_GRID_X):
         for y_location in range(constants.SCREEN_GRID_X):
             background.tile(x_location, y_location, 3)
@@ -932,7 +939,7 @@ def game_over(score):
         score_text.clear()
         score_text.cursor(0, 0)
         score_text.move(16, 90)
-        score_text.text("Final Score: {0}".format(score))
+        score_text.text("Final Score: {0}".format(final_score))
 
         game.layers = [score_text] + [text_game_over] + [background]
         game.render_block()
