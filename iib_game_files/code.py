@@ -62,8 +62,6 @@ def splash_scene():
     text2.text("Made by        Liam & Joseph")
     text.append(text2)
 
-    sound.play(boot_up)
-
     game = stage.Stage(ugame.display, constants.FPS)
     game.layers = text + sprites + [background]
     game.render_block()
@@ -74,8 +72,8 @@ def splash_scene():
     for x_location in range(constants.SCREEN_GRID_X):
         for y_location in range(constants.SCREEN_GRID_Y):
             background.tile(x_location, y_location, 15)
-
-    time.sleep(3)
+    sound.play(boot_up)
+    time.sleep(2)
     menu_scene()
     game.tick()
 
@@ -110,6 +108,12 @@ def menu_scene():
     game.layers = text + sprites + [background]
     game.render_block()
 
+    # get sound ready
+    press_start_audio = open("press_start_audio.wav", 'rb')
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
+
     lvl1 = None
     final_score = None
 
@@ -117,6 +121,8 @@ def menu_scene():
         keys = ugame.buttons.get_pressed()
         if keys & ugame.K_X != 0:
             final_score = 0
+            sound.play(press_start_audio)
+            time.sleep(1)
             score = lvl_1()
             lvl1 = 1
         game.tick()
@@ -137,21 +143,15 @@ def lvl_1():
     finish_list = []
     wall_sprites = []
 
-    # get sound ready
-    press_start_audio = open("press_start_audio.wav", 'rb')
-    sound = ugame.audio
-    sound.stop()
-    sound.mute(False)
+    # score and level
+    score = 0
+    level = 1
 
     # get sound ready
     key_collect = open("key_collect.wav", 'rb')
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
-
-    # score and level
-    score = 0
-    level = 1
 
     # buttons that keep state information
     a_button = constants.button_state["button_up"]
@@ -324,8 +324,6 @@ def lvl_1():
     # V If game lags, change this V
     game = stage.Stage(ugame.display, constants.FPS)
 
-    sound.play(press_start_audio)
-
     counter_r = 0
 
     while True:
@@ -434,6 +432,7 @@ def lvl_1():
             score += 1000
             counter_r = 0
             sound.play(key_collect)
+            time.sleep(3)
             return(score)
 
         for water_number in range(len(water_sprites)):
@@ -457,12 +456,6 @@ def lvl_2(score):
     door_list = []
     finish_list = []
     wall_sprites = []
-
-    # get sound ready
-    press_start_audio = open("press_start_audio.wav", 'rb')
-    sound = ugame.audio
-    sound.stop()
-    sound.mute(False)
 
     # get sound ready
     key_collect = open("key_collect.wav", 'rb')
@@ -703,9 +696,6 @@ def lvl_2(score):
     # V If game lags, change this V
     game = stage.Stage(ugame.display, constants.FPS)
 
-
-    sound.play(press_start_audio)
-
     counter_r = 0
 
     while True:
@@ -883,6 +873,7 @@ def lvl_2(score):
             finish_list = None
             wall_sprites = None
             sound.play(key_collect)
+            time.sleep(3)
             game_over(score)
 
             game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
