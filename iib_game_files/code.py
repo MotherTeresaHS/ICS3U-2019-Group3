@@ -42,6 +42,12 @@ def splash_scene():
     background.tile(6, 5, 0)
     background.tile(7, 5, 0)  # blank white
 
+    # get sound ready
+    boot_up = open("boot_up.wav", 'rb')
+    sound = ugame.audio
+    sound.stop()
+    sound.mute(False)
+
     sprites = []
     text = []
     text2_list = []
@@ -141,15 +147,12 @@ def lvl_1():
     score = 0
     level = 1
 
-<<<<<<< HEAD
     # get sound ready
     key_collect = open("key_collect.wav", 'rb')
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
 
-=======
->>>>>>> a1a61e7f1ccada42fc7e1a1eeffdc410788189fb
     # buttons that keep state information
     a_button = constants.button_state["button_up"]
     b_button = constants.button_state["button_up"]
@@ -428,11 +431,8 @@ def lvl_1():
                          vilheleme_list[0].x + 15, vilheleme_list[0].y + 15):
             score += 1000
             counter_r = 0
-<<<<<<< HEAD
             sound.play(key_collect)
             time.sleep(3)
-=======
->>>>>>> a1a61e7f1ccada42fc7e1a1eeffdc410788189fb
             return(score)
 
         for water_number in range(len(water_sprites)):
@@ -457,15 +457,12 @@ def lvl_2(score):
     finish_list = []
     wall_sprites = []
 
-<<<<<<< HEAD
     # get sound ready
     key_collect = open("key_collect.wav", 'rb')
     sound = ugame.audio
     sound.stop()
     sound.mute(False)
 
-=======
->>>>>>> a1a61e7f1ccada42fc7e1a1eeffdc410788189fb
     level = 2
 
     # buttons that keep state information
@@ -875,11 +872,8 @@ def lvl_2(score):
             door_list = None
             finish_list = None
             wall_sprites = None
-<<<<<<< HEAD
             sound.play(key_collect)
             time.sleep(3)
-=======
->>>>>>> a1a61e7f1ccada42fc7e1a1eeffdc410788189fb
             game_over(score)
 
             game.render_sprites(vilheleme_list + wall_sprites + key_list + door_list + finish_list + water_sprites + ice_sprites)
