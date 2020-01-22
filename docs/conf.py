@@ -41,11 +41,7 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'Ice Ice Baby - CircuitPython Game'
-<<<<<<< HEAD
 copyright = u'2020, Liam & Joseph'
-=======
-copyright = u'2020, Laim & Joseph'
->>>>>>> 569c284b6020790781e8ee420ed4ba9c105b9350
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
