@@ -16,7 +16,7 @@ For sound, the stage library can play back :file:`*.wav` files in PCM 16-bit Mon
 If you do not want to get into creating your own assets, other people have already made assets available to use. All the assets for this guide can be found in the GitHub repo here:
 
 - `space aliens image bank <https://raw.githubusercontent.com/joseph-palermo/ICS3U-2019-Group3/master/iib_game_files/IIB_sprites.bmp>`_
-- `mt game studios image bank <https://raw.githubusercontent.com/joseph-palermo/ICS3U-2019-Group3/master/iib_game_files/press_start_audio.wav>`
+- `mt game studios image bank <https://github.com/joseph-palermo/ICS3U-2019-Group3/blob/master/iib_game_files/mt_game_studio.bmp>`
 - `boot up sound <https://raw.githubusercontent.com/joseph-palermo/ICS3U-2019-Group3/master/iib_game_files/boot_up.wav>`_
 - `key collecting sound <https://raw.githubusercontent.com/joseph-palermo/ICS3U-2019-Group3/master/iib_game_files/key_collect.wav>`_
 - `splash screen sound <https://raw.githubusercontent.com/joseph-palermo/ICS3U-2019-Group3/master/iib_game_files/press_start_audio.wav>`_
