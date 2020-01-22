@@ -1,4 +1,3 @@
-
 Image Banks
 ===========
 
@@ -20,7 +19,6 @@ If you do not want to get into creating your own assets, other people have alrea
 - `boot up sound <https://raw.githubusercontent.com/joseph-palermo/ICS3U-2019-Group3/master/iib_game_files/boot_up.wav>`_
 - `key collecting sound <https://raw.githubusercontent.com/joseph-palermo/ICS3U-2019-Group3/master/iib_game_files/key_collect.wav>`_
 - `splash screen sound <https://raw.githubusercontent.com/joseph-palermo/ICS3U-2019-Group3/master/iib_game_files/press_start_audio.wav>`_
-- `crash sound <https://github.com/MotherTeresaHS/ICS3U-2019-Group0/blob/master/crash.wav>`_
 
 Please download the assets and place them on the PyBadge, in the root directory. Your previoud "Hello, World!" program should restart and run again each time you load a new file onto the PyBadge, hopefully with no errors once more.
 
